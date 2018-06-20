@@ -14,4 +14,9 @@ class CashRegister
         self.total += price * quantity
     end
 
+    def apply_discount
+        @discount == nil ? puts "there is no discount to apply" : self.total *= (1- self.discount)
+    end 
+
+
 end
