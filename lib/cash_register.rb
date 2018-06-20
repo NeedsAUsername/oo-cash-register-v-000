@@ -1,5 +1,5 @@
 class CashRegister
-    attr_accessor :total, :discount, :items, :item_count
+    attr_accessor :total, :discount, :items, :transaction
 
     def initialize(employee_discount = nil)
         @total = 0
@@ -12,8 +12,9 @@ class CashRegister
     end
 
     def add_item(title, price, quantity = 1)
+        self.transaction = price * quantity
         self.total += price * quantity
-        @item_count = Array.new(quantity, title)
+        item_count = Array.new(quantity, title)
         self.items += item_count
     end
 
@@ -30,7 +31,7 @@ class CashRegister
     end
 
     def void_last_transaction
-        self.total -= self.item_count
+        self.total -= self.transaction
     end
 
 
